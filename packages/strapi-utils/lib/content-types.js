@@ -123,7 +123,7 @@ const pickSchema = model => {
   return schema;
 };
 
-const formatContentType = (
+const createContentType = (
   model,
   { modelName, defaultConnection },
   { apiName, pluginName } = {}
@@ -182,6 +182,6 @@ module.exports = {
   isSingleType,
   isCollectionType,
   isKind,
-  formatContentType,
+  createContentType,
   getGlobalId,
 };

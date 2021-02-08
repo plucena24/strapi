@@ -23,12 +23,8 @@ module.exports = function(strapi) {
     for (let modelName in api.models) {
       let model = strapi.api[apiName].models[modelName];
 
-      contentTypesUtils.formatContentType(
-        // mutate model
-        model,
-        { modelName, defaultConnection },
-        { apiName }
-      );
+      // mutate model
+      contentTypesUtils.createContentType(model, { modelName, defaultConnection }, { apiName });
 
       strapi.contentTypes[model.uid] = model;
 
@@ -84,11 +80,8 @@ module.exports = function(strapi) {
   Object.keys(strapi.admin.models || []).forEach(modelName => {
     let model = strapi.admin.models[modelName];
 
-    contentTypesUtils.formatContentType(
-      // mutate model
-      model,
-      { modelName, defaultConnection }
-    );
+    // mutate model
+    contentTypesUtils.createContentType(model, { modelName, defaultConnection });
 
     strapi.contentTypes[model.uid] = model;
   });
@@ -112,12 +105,8 @@ module.exports = function(strapi) {
     Object.keys(plugin.models || []).forEach(modelName => {
       let model = plugin.models[modelName];
 
-      contentTypesUtils.formatContentType(
-        // mutate model
-        model,
-        { modelName, defaultConnection },
-        { pluginName }
-      );
+      // mutate model
+      contentTypesUtils.createContentType(model, { modelName, defaultConnection }, { pluginName });
 
       strapi.contentTypes[model.uid] = model;
     });
