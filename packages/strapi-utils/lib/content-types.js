@@ -133,7 +133,7 @@ const formatContentType = (
       uid: `application::${apiName}.${modelName}`,
       apiName,
       collectionName: model.collectionName || modelName.toLocaleLowerCase(),
-      globalId: getGlobalId(model, modelName, pluginName),
+      globalId: getGlobalId(model, modelName),
     });
   } else if (pluginName) {
     Object.assign(model, {
@@ -160,8 +160,10 @@ const formatContentType = (
   });
 };
 
-const getGlobalId = (model, modelName, prefix = '') => {
-  return model.globalId || _.upperFirst(_.camelCase(`${prefix}-${modelName}`));
+const getGlobalId = (model, modelName, prefix) => {
+  let globalId = prefix ? `${prefix}-${modelName}` : modelName;
+
+  return model.globalId || _.upperFirst(_.camelCase(globalId));
 };
 
 module.exports = {
